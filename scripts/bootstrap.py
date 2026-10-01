@@ -37,7 +37,7 @@ SKILL_HEADINGS = (
 )
 SOURCES = tuple(sorted((
     ".gitattributes", ".gitignore", "AGENTS.md", "BOOTSTRAP_VERSION",
-    "CHANGELOG.md", "LICENSE", "PROJECT_BOOTSTRAP.md", "README.md",
+    "CHANGELOG.md", "LICENSE", "PROJECT_BOOTSTRAP.md", "README.md", "README.en.md",
     "docs/INITIALIZE.md", "docs/PROJECT.md", "docs/RUNTIME.md", "docs/TESTING.md",
     "docs/SKILL_SOURCES.md", "skills/README.md",
     "templates/ADR_TEMPLATE.md",
