@@ -40,7 +40,6 @@ idea → täsmennys → rajattu työ → toteutus → testit → arviointi → i
 git clone https://github.com/FoxRav/project-bootstrap.git my-project
 cd my-project
 ```
-````
 
 1. Kloonaa tai kopioi pohja uuden projektin hakemistoon.
 2. Noudata [alustusohjetta](docs/INITIALIZE.md), myös uuden Git-historian osalta.

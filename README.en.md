@@ -1,4 +1,3 @@
-````markdown
 # Project Bootstrap
 
 [Suomi](README.md) · **English**
@@ -43,7 +42,6 @@ idea → clarification → bounded work → implementation → tests → review 
 git clone https://github.com/FoxRav/project-bootstrap.git my-project
 cd my-project
 ```
-````
 
 1. Clone or copy the foundation into a new project directory.
 2. Follow [docs/INITIALIZE.md](docs/INITIALIZE.md), including the new-project Git history guidance.
@@ -151,7 +149,3 @@ Skill design provenance: [docs/SKILL_SOURCES.md](docs/SKILL_SOURCES.md).
 ---
 
 [Suomi](README.md) · **English**
-
-```
-
-```
