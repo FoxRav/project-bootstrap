@@ -1,0 +1,58 @@
+# Local research and review scratch space
+.firecrawl/
+.review-cache/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+node_modules/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Credentials and local configuration; add stack-specific patterns at initialization
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+/secrets/
+/.secrets/
+
+# Local on-demand review artifacts, including notes and manifests
+/REVIEW/
+
+# Local editor state; shared editor settings remain versionable
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+*.local.code-workspace
+.idea/workspace.xml
+.idea/shelf/
+.vscode/*.local.json
+
+# Local logs and database state; fixtures/schema files remain versionable
+/logs/
+/local-data/
+*.log
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
