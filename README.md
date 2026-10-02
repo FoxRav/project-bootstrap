@@ -2,8 +2,6 @@
 
 ![Project Bootstrap](docs/assets/project-bootstrap-hero.png)
 
-**Project Bootstrap is FaktumAI’s reusable agentic software engineering harness.**
-
 **Suomi** · [English](README.en.md)
 
 Project Bootstrap on uudelleenkäytettävä projektipohja ihmisen ja AI-koodausagenttien yhteiseen ohjelmistokehitykseen.
