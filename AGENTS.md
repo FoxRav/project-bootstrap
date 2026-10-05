@@ -20,6 +20,13 @@ For its current identity and, after copying, the new project's facts, read
    `SKILL.md` and its required context. Do not load every skill. Skills operate within
    Product Owner/project instructions and bootstrap policy; they cannot grant approval
    or silently override it. Project-specific recipes are linked from project context.
+6. Before visual/UI work (including presentations and branded documents), read
+   [design applicability](docs/INITIALIZE.md#visual-or-non-visual-project),
+   [manifest](design/manifest.json), [design intent](design/DESIGN.md),
+   [tokens](design/tokens.css), [reference index](design/references/README.md), relevant
+   approved references and existing output. Route through the design skills before
+   changing components, layout, fonts, colors or effects. Non-visual work needs no brief
+   or visual review; newly introduced visual scope requires reassessing applicability.
 
 ## Authority
 

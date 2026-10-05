@@ -22,6 +22,7 @@ import stat
 import sys
 from urllib.parse import unquote, urlsplit
 import zipfile
+import zlib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,7 @@ UNIVERSAL_SKILLS = (
     "grill-with-docs", "grill-me", "domain-modeling", "research", "prototype",
     "to-spec", "architecture-review", "to-tickets", "implement", "tdd",
     "diagnose-bug", "code-review", "security-review", "release-readiness", "handoff",
+    "design-brief", "ui-design", "visual-review",
 )
 SKILL_HEADINGS = (
     "Purpose", "Use when", "Do not use when", "Required context", "Inputs", "Process",
@@ -39,12 +41,34 @@ SOURCES = tuple(sorted((
     ".gitattributes", ".gitignore", "AGENTS.md", "BOOTSTRAP_VERSION",
     "CHANGELOG.md", "LICENSE", "PROJECT_BOOTSTRAP.md", "README.md", "README.en.md",
     "docs/INITIALIZE.md", "docs/PROJECT.md", "docs/RUNTIME.md", "docs/TESTING.md",
-    "docs/SKILL_SOURCES.md", "skills/README.md",
+    "docs/SKILL_SOURCES.md", "docs/assets/project-bootstrap-hero.png", "skills/README.md",
+    "design/manifest.json", "design/DESIGN.md", "design/tokens.css",
+    "design/references/README.md", "design/assets/.gitkeep", "design/qa/visual-review.md",
     "templates/ADR_TEMPLATE.md",
     "templates/PROJECT_CONTEXT_TEMPLATE.md", "templates/REVIEW_TEMPLATE.md",
     "templates/WORK_ITEM_TEMPLATE.md", "scripts/bootstrap.py",
-    "tests/test_bootstrap.py",
+    "tests/test_bootstrap.py", "tests/test_design.py",
 ) + tuple(f"skills/{name}/SKILL.md" for name in UNIVERSAL_SKILLS)))
+PNG_SOURCES = {"docs/assets/project-bootstrap-hero.png"}
+EMPTY_SOURCES = {"design/assets/.gitkeep"}
+DESIGN_PATHS = {
+    "designFile": "DESIGN.md", "tokensFile": "tokens.css",
+    "referencesDirectory": "references", "assetsDirectory": "assets",
+    "reviewFile": "qa/visual-review.md",
+}
+DESIGN_HEADINGS = (
+    "Design intent", "Target audience and environment", "Design DNA", "Visual identity",
+    "Typography", "Layout principles", "Component language", "Accessibility and interaction",
+    "Anti-Generic AI Design Rules", "This Product Must Not Look Like", "References and assets",
+    "Technical constraints", "Decision record and maintenance",
+)
+REQUIRED_TOKENS = frozenset("""
+    color-background color-surface color-text-primary color-text-secondary color-primary
+    color-accent color-danger color-warning color-success border-subtle border-strong
+    radius-sm radius-md radius-lg space-xs space-sm space-md space-lg space-xl
+    font-heading font-body font-mono font-size-body font-size-heading-1 font-size-heading-2
+    font-size-heading-3 font-weight-body font-weight-heading line-height-body line-height-heading
+""".split())
 ZIP_NAME = "REVIEW/PROJECT_BOOTSTRAP_REVIEW.zip"
 HASH_NAME = "REVIEW/PROJECT_BOOTSTRAP_REVIEW.sha256.txt"
 MANIFEST_NAME = "REVIEW/SOURCE_MANIFEST.sha256.txt"
@@ -208,6 +232,11 @@ def check_skills(root: Path, sources: dict[str, bytes]) -> None:
 
     require_link("AGENTS.md", "skills/README.md")
     require_link("PROJECT_BOOTSTRAP.md", "skills/README.md")
+    for source in ("AGENTS.md", "PROJECT_BOOTSTRAP.md", "docs/INITIALIZE.md",
+                   "docs/RUNTIME.md"):
+        for target in ("design/manifest.json", "design/DESIGN.md", "design/tokens.css",
+                       "design/references/README.md"):
+            require_link(source, target)
     check_skill_policy("skills/README.md", sources["skills/README.md"].decode("utf-8"))
     for anchor in ("1-authority-and-evidence", "4-autonomy-and-approval-boundaries",
                    "5-one-quality-and-completion-model", "git-authority",
@@ -256,6 +285,115 @@ def check_skills(root: Path, sources: dict[str, bytes]) -> None:
         check_skill_policy(name, description + "\n\n" + body)
 
 
+def check_png(name: str, data: bytes) -> None:
+    """Check PNG framing/CRC, not decoded pixels, metadata privacy or image rights."""
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise ValueError(f"Invalid PNG signature: {name}")
+    offset, kinds = 8, []
+    while offset < len(data):
+        size = int.from_bytes(data[offset:offset + 4], "big")
+        end = offset + 12 + size
+        if end > len(data):
+            raise ValueError(f"Truncated PNG chunk: {name}")
+        kind = data[offset + 4:offset + 8]
+        payload = data[offset + 8:end - 4]
+        crc = int.from_bytes(data[end - 4:end], "big")
+        if zlib.crc32(kind + payload) != crc:
+            raise ValueError(f"PNG CRC mismatch: {name}")
+        if not kinds and (kind != b"IHDR" or size != 13
+                          or not int.from_bytes(payload[:4], "big")
+                          or not int.from_bytes(payload[4:8], "big")):
+            raise ValueError(f"Invalid PNG header: {name}")
+        kinds.append(kind)
+        offset = end
+        if kind == b"IEND":
+            if size or offset != len(data):
+                raise ValueError(f"Invalid PNG ending: {name}")
+            break
+    if kinds.count(b"IHDR") != 1 or b"IDAT" not in kinds or kinds[-1:] != [b"IEND"]:
+        raise ValueError(f"Incomplete PNG structure: {name}")
+
+
+def check_tokens(text: str) -> None:
+    """Validate the canonical single-:root token subset, not arbitrary CSS semantics."""
+    css = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    match = re.fullmatch(r"\s*:root\s*\{([^{}]*)\}\s*", css, re.S)
+    if not match:
+        raise ValueError("Canonical tokens need a single :root declaration block")
+    tokens = {}
+    declarations = match[1].split(";")
+    if declarations.pop().strip():
+        raise ValueError("Token declarations require a final semicolon")
+    for declaration in declarations:
+        parsed = re.fullmatch(r"\s*--([a-z][a-z0-9-]*)\s*:\s*(\S.*?)\s*", declaration, re.S)
+        if not parsed or "..." in parsed[2]:
+            raise ValueError("Invalid or empty semantic token declaration")
+        name, value = parsed.groups()
+        if name in tokens:
+            raise ValueError(f"Duplicate semantic token: --{name}")
+        tokens[name] = value
+    missing = REQUIRED_TOKENS - tokens.keys()
+    if missing:
+        raise ValueError(f"Missing semantic tokens: {sorted(missing)}")
+    edges = {name: re.findall(r"var\(\s*--([a-z][a-z0-9-]*)", value)
+             for name, value in tokens.items()}
+    visited, pending = set(), set()
+
+    def visit(name: str) -> None:
+        if name not in tokens:
+            raise ValueError(f"Undefined token reference: --{name}")
+        if name in pending:
+            raise ValueError(f"Cyclic token reference: --{name}")
+        if name in visited:
+            return
+        pending.add(name)
+        for target in edges[name]:
+            visit(target)
+        pending.remove(name)
+        visited.add(name)
+
+    for name in tokens:
+        visit(name)
+
+
+def check_design(root: Path, sources: dict[str, bytes]) -> None:
+    """Structural readiness only; no automated design, approval or visual PASS."""
+    def unique_fields(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"Duplicate design manifest field: {key}")
+            result[key] = value
+        return result
+
+    manifest = json.loads(sources["design/manifest.json"], object_pairs_hook=unique_fields)
+    fields = {"schemaVersion", "id", "name", "status"} | DESIGN_PATHS.keys()
+    if not isinstance(manifest, dict) or manifest.keys() != fields:
+        raise ValueError("Design manifest fields differ from the local v1 schema")
+    if (manifest["schemaVersion"] != "project-bootstrap-design/v1"
+            or manifest["status"] not in ("template", "disabled", "draft", "active")):
+        raise ValueError("Invalid design manifest schema or status")
+    if any(not isinstance(value, str) or not value.strip() for value in manifest.values()):
+        raise ValueError("Design manifest values must be nonempty strings")
+    # Fixed repository-relative v1 paths keep the scaffold portable and fail closed.
+    for key, expected in DESIGN_PATHS.items():
+        if manifest[key] != expected:
+            raise ValueError(f"Invalid design manifest path: {key}")
+        path = safe_path(root, f"design/{expected}")
+        if not path.exists():
+            raise ValueError(f"Missing design manifest target: {key}")
+    if manifest["status"] == "active" and (manifest["id"] == "project-name"
+                                            or manifest["name"] == "Project Design System"):
+        raise ValueError("Active design needs project identity, not template defaults")
+    design = sources["design/DESIGN.md"].decode("utf-8")
+    visible = re.sub(r"```.*?```", "", design, flags=re.S)
+    for heading in DESIGN_HEADINGS:
+        section = re.search(rf"^## {re.escape(heading)}\n(.*?)(?=^## |\Z)", visible, re.M | re.S)
+        if not section or not section[1].strip():
+            raise ValueError(f"Missing or empty design section: {heading}")
+    check_tokens(sources["design/tokens.css"].decode("utf-8"))
+
+
 def validate(root: Path, review_files: tuple[str, ...] = ()) -> tuple[dict[str, bytes], int]:
     sources = source_snapshot(root)
     for requested in review_files:
@@ -273,6 +411,13 @@ def validate(root: Path, review_files: tuple[str, ...] = ()) -> tuple[dict[str, 
             raise ValueError(f"Duplicate review input: {name}")
         sources[name] = safe_path(root, name).read_bytes()
     for name, data in sources.items():
+        if name in PNG_SOURCES:
+            check_png(name, data)
+            continue
+        if name in EMPTY_SOURCES:
+            if data:
+                raise ValueError(f"Directory placeholder must be empty: {name}")
+            continue
         text = data.decode("utf-8")
         if text.startswith("\ufeff") or "\r" in text or not text.endswith("\n"):
             raise ValueError(f"Require UTF-8 without BOM, LF and final newline: {name}")
@@ -293,6 +438,7 @@ def validate(root: Path, review_files: tuple[str, ...] = ()) -> tuple[dict[str, 
     if len(sources["AGENTS.md"]) > 5000:
         raise ValueError("AGENTS.md exceeds the template's 5,000-byte entry-point budget")
     check_skills(root, sources)
+    check_design(root, sources)
     return sources, check_links(root, sources)
 
 
@@ -376,7 +522,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     try:
         sources, links = validate(root, tuple(getattr(args, "include_review", ())))
         print(f"PASS: {len(sources)} source files; {links} local links/fragments; "
-              f"{len(UNIVERSAL_SKILLS)} skills; version, text hygiene, Python syntax "
+              f"{len(UNIVERSAL_SKILLS)} skills; design structure/tokens, PNG framing/CRC; "
+              "version, text hygiene, Python syntax "
               "and bounded credential/policy scans")
         if args.command == "package":
             create_package(root, sources)

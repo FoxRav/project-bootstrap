@@ -1,7 +1,7 @@
 # Project context — canonical bootstrap
 
 Status: current for bootstrap maintenance; replace when starting a product.
-Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-10-01.
+Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-10-04.
 Adopted foundation: [BOOTSTRAP_VERSION](../BOOTSTRAP_VERSION). Local deviations: none.
 
 ## Product intent
@@ -25,11 +25,16 @@ data is part of this repository.
   the replaceable runtime adapter. Projects may split facts into PRD/architecture/
   security/glossary files later, keeping one canonical location per fact.
 - `templates/` contains forms, not active requirements or approvals.
-- `skills/` holds 15 universal recipes with selective routing; project copies can add
+- `skills/` holds 18 universal recipes with selective routing; project copies can add
   local domain recipes. Policy remains in the bootstrap; runtime discovery is an adapter.
+- `design/` holds an unconfigured, persistent design template for visual projects.
+  Manifest status is `template` here; no product identity or compliant rendered UI is
+  claimed. Existing README artwork is preserved, not a brief to invent a new brand.
+  Copied projects explicitly activate the layer or mark it disabled during initialization.
 - [scripts/bootstrap.py](../scripts/bootstrap.py) checks source integrity and, only on
-  explicit invocation, creates a review ZIP; [tests](../tests/test_bootstrap.py) exercise
-  failure modes. Python is maintenance tooling, not a mandated product stack.
+  explicit invocation, creates a review ZIP; [tool tests](../tests/test_bootstrap.py) and
+  [design tests](../tests/test_design.py) exercise failure modes. Python is maintenance
+  tooling, not a mandated product stack.
 - `REVIEW/` is an optional output area created only when packaging is requested.
   Review notes are included only when selected; no historical report is required.
   Research/cache folders are local and excluded from delivery.
@@ -50,6 +55,8 @@ source inventory when intentionally adding or removing canonical files.
 | People/tools/runtime discovery | [Runtime adapter](RUNTIME.md) |
 | Engineering recipes / extension convention | [Skill router](../skills/README.md) |
 | Skill design provenance (reference only) | [Skill sources](SKILL_SOURCES.md) |
+| Design applicability, intent, tokens and reference workflow | [Initialization](INITIALIZE.md#visual-or-non-visual-project), [design definition](../design/DESIGN.md), [manifest](../design/manifest.json) |
+| Visual review evidence within normal review | [Visual worksheet](../design/qa/visual-review.md) |
 | Current work | None; add links here when starting a bounded work item |
 
 No accepted ADR is required for routine maintenance. Create `docs/ADR/` and a numbered

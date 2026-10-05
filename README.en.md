@@ -6,7 +6,7 @@ A reusable foundation for people and AI coding agents to build software together
 
 Clone or copy this repository when starting a new project, then replace the project context with your own goals, constraints and commands.
 
-Project Bootstrap gives people and AI coding agents shared working rules, 15 task-specific skills and reusable work and review templates.
+Project Bootstrap gives people and AI coding agents shared working rules, 18 task-specific skills and reusable work and review templates.
 
 It is designed for solo builders and teams. It does not require a specific application framework, AI provider or subscription.
 
@@ -98,22 +98,24 @@ See [PROJECT_BOOTSTRAP.md](PROJECT_BOOTSTRAP.md) for the canonical authority and
 | [docs/TESTING.md](docs/TESTING.md)                                             | Validation and test commands                           |
 | [docs/SKILL_SOURCES.md](docs/SKILL_SOURCES.md)                                 | Skill sources and provenance                           |
 | [skills/README.md](skills/README.md)                                           | Skill selection and usage                              |
+| [design/DESIGN.md](design/DESIGN.md)                                           | Persistent visual project design context               |
 | [templates/WORK_ITEM_TEMPLATE.md](templates/WORK_ITEM_TEMPLATE.md)             | Work item template                                     |
 | [templates/ADR_TEMPLATE.md](templates/ADR_TEMPLATE.md)                         | Architecture decision template                         |
 | [templates/REVIEW_TEMPLATE.md](templates/REVIEW_TEMPLATE.md)                   | Review template                                        |
 | [templates/PROJECT_CONTEXT_TEMPLATE.md](templates/PROJECT_CONTEXT_TEMPLATE.md) | Project context template                               |
 | [scripts/bootstrap.py](scripts/bootstrap.py)                                   | Bootstrap validation and optional packaging            |
 | [tests/test_bootstrap.py](tests/test_bootstrap.py)                             | Bootstrap regression tests                             |
+| [tests/test_design.py](tests/test_design.py)                                   | Design structure and source image regression tests     |
 
 ## Skills
 
 A skill is a reusable procedure for one class of work.
 
-Project Bootstrap contains 15 universal skills:
+Project Bootstrap contains 18 universal skills:
 
 `grill-with-docs` · `grill-me` · `domain-modeling` · `research` · `prototype` · `to-spec` ·
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
-`security-review` · `release-readiness` · `handoff`
+`security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
 
 Skills do not grant permission to bypass project authority or other rules.
 
@@ -122,6 +124,19 @@ A skill can be loaded directly by file path without installation. Runtime-specif
 Project-specific skills belong with their project.
 
 See [skills/README.md](skills/README.md).
+
+## Design for visual projects
+
+[Initialization](docs/INITIALIZE.md#visual-or-non-visual-project) determines whether the
+project produces UI or other visual output, including presentations and branded documents.
+Visual projects establish persistent [design intent](design/DESIGN.md), [semantic tokens](design/tokens.css)
+and [reference use](design/references/README.md), preserving existing approved identity.
+Design DNA, negative choices and anti-generic rules prevent unreasoned default AI styling.
+
+Agents read this context before visual changes. Visual review examines actual rendered
+output within the existing review model. Non-visual projects mark the layer disabled
+and need no brief or visual review. No OpenDesign installation, service or additional
+approval process is required.
 
 ## Validate the foundation
 

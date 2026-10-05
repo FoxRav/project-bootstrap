@@ -1,6 +1,6 @@
 # Validation for the canonical bootstrap
 
-Owner: bootstrap maintainer. Verified: 2026-10-01.
+Owner: bootstrap maintainer. Verified: 2026-10-04.
 This is the project command registry for [the universal quality model](../PROJECT_BOOTSTRAP.md#5-one-quality-and-completion-model).
 Replace it when initializing a product; these checks do not validate application code.
 
@@ -14,7 +14,7 @@ report, ZIP, manifest or checksum is required for normal work or these checks.
 
 | Layer / trigger | Exact command | Expected result |
 | --- | --- | --- |
-| Structure, skills, format, syntax and bounded pattern checks; after document/tool changes | `python scripts/bootstrap.py check` | Exit 0; source inventory, skill structure/routing, links/fragments, text hygiene and version pass; no review outputs created |
+| Structure, skills, design, format, syntax and bounded pattern checks; after document/tool changes | `python scripts/bootstrap.py check` | Exit 0; inventory, skill/design structure, tokens, PNG framing/CRC, links/fragments, text hygiene and version pass; no review outputs created |
 | Tool regression tests; after tooling changes and before completion when relevant | `python -m unittest discover -s tests -v` | Exit 0; all tests pass; no skipped tests |
 | Git inspection; before delivery or a Product Owner commit where Git exists | `git status --short`, `git diff --check`, `git diff`, `git diff --cached` | No whitespace errors; all changes and untracked files inspected; status reported truthfully |
 
@@ -69,12 +69,34 @@ tool as a general-purpose product packager or a substitute for a full secret sca
 
 ## Applicability and review
 
-Skill validation requires all 15 universal recipes, matching metadata/title, nonempty
+Skill validation requires all 18 universal recipes, matching metadata/title, nonempty
 standard headings in order, an ordered process, router/entry-point links and references
 to the shared authority contract. Canonical metadata uses a small YAML-compatible
 subset: plain `name` and a single-line double-quoted `description` with JSON escaping;
 no YAML library or runtime installation is needed. The closed inventory rejects
 accidental files such as historical bootstrap work records outside the excluded outputs.
+
+Design validation checks the local v1 manifest's exact fields and portable paths, status,
+nonempty identity, required design sections and semantic tokens. Active status rejects
+default identity names; it does not prove approval, resolved prose or a finished brief.
+The canonical token checker accepts one `:root` block of custom-property declarations
+with terminating semicolons; it rejects missing/empty/duplicate roles and undefined or
+cyclic `var()` references. It is not a general CSS parser or a browser renderer. A copied
+product adapts this bounded checker for its themes/stack alongside its normal checks.
+
+The canonical template ships all design files even in template/disabled state so its
+reusable capability can be validated. Non-visual products do not need to populate them,
+adopt the sample tokens or perform visual review. Product adoption can remove unused
+files after adapting/removing this closed inventory and repairing references. Tests in
+[test_design.py](../tests/test_design.py) cover activation states, malformed manifests,
+unsafe paths, broken context routing and token regressions.
+
+Only explicitly listed PNG sources bypass UTF-8 text validation. The existing README
+image receives signature, chunk framing, CRC and required-chunk checks, not full pixel
+decoding, rights analysis or a metadata secret scan. Inspect image content/metadata and
+rights manually when adding/changing assets. Only the named empty directory placeholder
+may omit text/newline checks; unknown binaries still fail inventory and all real text
+keeps its existing checks. Packaging preserves binary and empty-file bytes exactly.
 
 The bounded skill-policy scan rejects common automatic Git, approval-bypass and mandatory
 ZIP directives, including in descriptions and the router. It is a regression guard,
@@ -85,6 +107,15 @@ repository facts versus unanswered product choices, a blocked schema slice, a fa
 valid test, read-only review of dirty/untracked code and a release awaiting approval.
 Record which recipes were exercised; a tabletop is not application execution or a full
 agent benchmark. Recheck any native discovery adapter in its actual runtime separately.
+
+For design recipes, also walk initialization of a non-visual utility, a visual product
+with an existing brand, and one with unresolved identity. Exercise a scoped UI change,
+a conflicting reference and visual review with unavailable rendered evidence. Check
+that context loads before visual edits, ordinary approved styling stays autonomous,
+and no recipe substitutes source checks for a rendered visual PASS. For actual product
+UI changes, use [the visual worksheet](../design/qa/visual-review.md) within the existing
+review evidence; verify relevant states, viewport/page sizes and accessibility with the
+product's real tools. This template has no rendered product UI to certify.
 
 Normal layers are text/structure checks, Python syntax parsing, unit/negative-path
 tests and bounded credential scanning. Package build/integrity checks apply only when

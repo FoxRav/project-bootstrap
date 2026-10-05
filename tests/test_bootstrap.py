@@ -157,6 +157,7 @@ class BootstrapTests(unittest.TestCase):
             "grill-with-docs", "grill-me", "domain-modeling", "research", "prototype",
             "to-spec", "architecture-review", "to-tickets", "implement", "tdd",
             "diagnose-bug", "code-review", "security-review", "release-readiness", "handoff",
+            "design-brief", "ui-design", "visual-review",
         }
         self.assertEqual(set(b.UNIVERSAL_SKILLS), expected)
         self.seed()

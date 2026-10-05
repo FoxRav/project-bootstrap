@@ -1,0 +1,45 @@
+/* Illustrative starter values, NOT an approved project identity.
+ * Replace deliberately during the design brief and record rationale in DESIGN.md.
+ * Consume semantic roles in UI; map the same roles into non-CSS renderers.
+ * No external fonts, imports or framework dependency. */
+:root {
+  --color-background: #f5f4f0;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-text-primary: #20231f;
+  --color-text-secondary: #50564d;
+  --color-primary: #354b3c;
+  --color-on-primary: #ffffff;
+  --color-accent: #795b20;
+  --color-danger: #a32626;
+  --color-warning: #795b20;
+  --color-success: #28613b;
+  --color-focus: #005fcc;
+
+  --border-subtle: 1px solid #c7cbc3;
+  --border-strong: 2px solid #666d60;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  --font-heading: Georgia, serif;
+  --font-body: Arial, sans-serif;
+  --font-mono: "Courier New", monospace;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-heading-1: 2rem;
+  --font-size-heading-2: 1.5rem;
+  --font-size-heading-3: 1.25rem;
+  --font-weight-body: 400;
+  --font-weight-heading: 700;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.2;
+  --content-max-width: 72rem;
+  --page-gutter: var(--space-lg);
+  --shadow-elevated: 0 0.25rem 1rem #20231f1a;
+}

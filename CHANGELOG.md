@@ -3,6 +3,22 @@
 This records canonical foundation releases, not the copied application's releases.
 Version semantics and adoption policy: [PROJECT_BOOTSTRAP.md §7](PROJECT_BOOTSTRAP.md#7-living-knowledge-git-and-versions).
 
+## 2.2.0 — 2026-10-04
+
+Added persistent design context, semantic tokens, reference guidance and visual review
+for projects with visual output, plus design-brief, ui-design and visual-review recipes.
+Initialization distinguishes visual and non-visual projects; agents load applicable
+design context before visual changes. Added deterministic design validation and failure
+tests. Included existing README artwork in the source inventory with explicit PNG
+integrity checks, fixing validation of the already tracked binary source.
+
+Minor version: compatible conditional capability, with existing authority, lifecycle,
+approvals, quality model, manual Git execution and optional packaging preserved. No
+framework, external dependency or native runtime adapter is added. When adopting,
+normalize an existing visual project's approved design instead of restyling it; populate
+the brief/tokens and record authority before activation. Mark non-visual projects
+disabled. Template values and manifest status are not product approval.
+
 ## 2.1.1 — 2026-10-01
 
 Prepared public-facing documentation with Finnish and English reading paths, a concise

@@ -27,6 +27,10 @@ source of intent, and acceptance owner. Link context instead of copying it.]
 
 ## Current-state inspection — before implementation
 
+[For visual impact only: link applicable persistent design intent, tokens and reference
+entries; identify existing output to preserve and whether design change is authorized.
+Do not create a fresh design system for this work item. Omit for non-visual scope.]
+
 [Base revision and dirty/untracked state; inspected code/tests/configuration; current
 behavior and baseline failures; existing patterns to reuse; why no parallel implementation
 is needed; conflicts resolved or escalated with sources. Record actual inspection, not intent.]

@@ -20,6 +20,11 @@ do not duplicate implementation details. List applicable accepted ADRs, if any.]
 
 ## Local conventions and hazards
 
+[Visual applicability: yes/no and why. Link the design manifest and DESIGN.md when
+retained; record the actual renderer and approved existing output. For visual scope,
+follow [design initialization](../docs/INITIALIZE.md#visual-or-non-visual-project).
+Non-visual projects require no design brief or visual review. Repair links after copying.]
+
 [Stack/tool versions, coding conventions, reuse points, fragile areas, domain invariants,
 known failures, scoped instructions and any project-specific skills with usage triggers.
 Use the extension convention in the [skill router](../skills/README.md); version local

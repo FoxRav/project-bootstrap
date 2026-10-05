@@ -35,6 +35,11 @@ tool, failed prerequisite or skipped check into PASS.
 
 ## Review
 
+[For visual impact, use the [visual worksheet](../design/qa/visual-review.md) within this
+record. Identify actual rendered output, views/states/viewports, governing design and
+accessibility evidence. Missing render access means visual review BLOCKED/NOT RUN,
+not PASS from source inspection. Omit this branch for non-visual work.]
+
 Reviewer/context: [identity and separate context; explicitly say self-review if author].
 Reviewed state: [revision/diff/content identity]. Scope: [files/behaviors actually reviewed].
 

@@ -18,6 +18,9 @@ skills or run the whole route by default. For example: "Use
 | Architecture boundaries or consequential design risk | [architecture-review](architecture-review/SKILL.md) |
 | Accepted spec needs bounded executable work items | [to-tickets](to-tickets/SKILL.md) |
 | Approved bounded implementation | [implement](implement/SKILL.md) |
+| Visual project needs a baseline or authorized identity update | [design-brief](design-brief/SKILL.md) |
+| Implement/change UI or other visual output | [ui-design](ui-design/SKILL.md) |
+| Assess rendered output against approved design and usability | [visual-review](visual-review/SKILL.md) |
 | Behavior benefits from red-green-refactor | [tdd](tdd/SKILL.md) |
 | Unexpected behavior needs causal investigation | [diagnose-bug](diagnose-bug/SKILL.md) |
 | Actual implementation needs independent review | [code-review](code-review/SKILL.md) |
@@ -67,6 +70,13 @@ may happen during definition; tests happen throughout implementation. A routine 
 use implement plus appropriate validation/self-review; a bug may start at diagnose-bug.
 No stage requires speculative future documentation. Release-readiness applies only to
 a release candidate, and handoff applies wherever ownership/context changes.
+
+For visual scope, load [design context](../design/DESIGN.md) before implementation.
+Use design-brief only to establish/normalize the baseline or change authorized intent;
+ui-design applies it and visual-review supplies findings to the existing review step.
+Non-visual work skips this branch. Design is persistent project knowledge, not generated
+per work item. The [initialization checklist](../docs/INITIALIZE.md#visual-or-non-visual-project)
+defines applicability, including visual documents and presentations.
 
 ## Project-specific extensions
 

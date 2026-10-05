@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "project-bootstrap-design/v1",
+  "id": "project-name",
+  "name": "Project Design System",
+  "status": "template",
+  "designFile": "DESIGN.md",
+  "tokensFile": "tokens.css",
+  "referencesDirectory": "references",
+  "assetsDirectory": "assets",
+  "reviewFile": "qa/visual-review.md"
+}

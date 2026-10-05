@@ -21,3 +21,11 @@ URLs track upstream branches/pages and may change after this review.
 Research, bounded prototypes, threat-driven review, release recommendations and concise
 handoff are tailored to the Product Owner's requested operating model. External patterns
 inform implementation; they neither supply approval nor replace the canonical policy.
+
+The design-brief, ui-design and visual-review recipes were authored for the Product
+Owner's Design System & Visual Governance work package (2026-10-04). They integrate
+persistent repository design context with the existing quality model. No OpenDesign
+code, skill text or assets are vendored; no dependency or API compatibility is implied.
+The manifest and semantic token conventions are local portable formats that a future
+optional adapter could map. Original authorship is not a license assessment of any
+external design reference; record those rights per reference before reuse.

@@ -24,6 +24,33 @@ Product decisions that are not yet known stay open; do not fabricate them.
 - [ ] Update [RUNTIME.md](RUNTIME.md) for the actual team and tools. Keep repository-local
   conventions, hazards, domain terms and links to any relevant skills in project context.
 
+## Visual or non-visual project
+
+- [ ] Does this project produce a UI or other visual output? Include web/desktop/mobile
+  interfaces, dashboards, landing pages, portals, presentations, infographics, social
+  graphics and branded documents. A service or CLI with no visual output can answer no.
+- [ ] Record applicability in project context and set [manifest](../design/manifest.json)
+  status: `disabled` for non-visual projects, `draft` while defining visual intent,
+  `active` for a resolved, authorized baseline. The shipped `template` is unconfigured.
+  Status records readiness; it never grants approval. Reassess when visual scope is added.
+- [ ] For a visual project, identify existing brand/UI/approved references. Use
+  [design-brief](../skills/design-brief/SKILL.md) to normalize that design, or define it
+  from product intent if absent. Fill [DESIGN.md](../design/DESIGN.md), replace illustrative
+  [token values](../design/tokens.css) deliberately and maintain the
+  [reference index](../design/references/README.md). Resolve meaningful unknowns through
+  the existing decision process; do not invent an approved identity.
+- [ ] For visual projects, record three to six Design DNA traits, project-specific negative choices,
+  accessibility needs, layout/typography and technical constraints. Verify references,
+  font/asset rights and token mappings for the actual renderer. Link approval sources
+  for consequential choices; reuse existing specific authorization.
+- [ ] For non-visual projects, no brief, populated tokens or visual review is required.
+  Keeping the disabled template is harmless; removing unused design files in the copied
+  product requires adapting its links/instructions and any retained maintenance inventory.
+- [ ] Route visual implementation through [ui-design](../skills/ui-design/SKILL.md) and
+  rendered review through [visual-review](../skills/visual-review/SKILL.md), using the
+  existing work/review evidence. Design persists between tasks. No OpenDesign service,
+  runtime installation, framework or additional approval workflow is needed.
+
 ## Choose only the foundation needed now
 
 - [ ] Retain the [skill router](../skills/README.md) and load recipes only as needed.
@@ -53,7 +80,7 @@ Product decisions that are not yet known stay open; do not fabricate them.
 - [ ] If the copy contains optional review artifacts or completed project-specific work
   records, omit them from the new project's active context after preserving any needed
   provenance. Repair references to removed files. The canonical template needs neither.
-- [ ] The `scripts/bootstrap.py` inventory and `tests/test_bootstrap.py` serve the canonical
+- [ ] The `scripts/bootstrap.py` inventory and `tests/` serve the canonical
   template only. Remove them and their commands/links in the copied product, or explicitly
   adapt them to the new repository. The packaging capability may be retained for optional
   handoffs, but must not constrain the product to the template's file list or become a

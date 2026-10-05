@@ -8,7 +8,7 @@ Project Bootstrap on uudelleenkäytettävä projektipohja ihmisen ja AI-koodausa
 
 Kun aloitat uuden projektin, kloonaat tämän repon tai kopioit sen lähdetiedostot ja täytät projektin omat tiedot.
 
-Pohja sopii sekä ensimmäistä sovellustaan rakentavalle että kokeneelle tiimille. Se antaa yhteiset työskentelysäännöt, 15 tehtäväkohtaista skilliä sekä uudelleenkäytettävät työ- ja arviointipohjat. Se ei sido sovelluskehystä tai AI-palvelua.
+Pohja sopii sekä ensimmäistä sovellustaan rakentavalle että kokeneelle tiimille. Se antaa yhteiset työskentelysäännöt, 18 tehtäväkohtaista skilliä sekä uudelleenkäytettävät työ- ja arviointipohjat. Se ei sido sovelluskehystä tai AI-palvelua.
 
 Versio: [BOOTSTRAP_VERSION](BOOTSTRAP_VERSION)
 
@@ -98,22 +98,24 @@ Tarkat rajat löytyvät [toimintaperiaatteista](PROJECT_BOOTSTRAP.md).
 | [docs/TESTING.md](docs/TESTING.md)                                             | Projektin tarkistus- ja testauskomennot                |
 | [docs/SKILL_SOURCES.md](docs/SKILL_SOURCES.md)                                 | Skillien lähteet ja alkuperä                           |
 | [skills/README.md](skills/README.md)                                           | Skillien valinta ja käyttö                             |
+| [design/DESIGN.md](design/DESIGN.md)                                           | Visuaalisen projektin pysyvä designkonteksti             |
 | [templates/WORK_ITEM_TEMPLATE.md](templates/WORK_ITEM_TEMPLATE.md)             | Työpaketin pohja                                       |
 | [templates/ADR_TEMPLATE.md](templates/ADR_TEMPLATE.md)                         | Arkkitehtuuripäätöksen pohja                           |
 | [templates/REVIEW_TEMPLATE.md](templates/REVIEW_TEMPLATE.md)                   | Arvioinnin pohja                                       |
 | [templates/PROJECT_CONTEXT_TEMPLATE.md](templates/PROJECT_CONTEXT_TEMPLATE.md) | Projektikontekstin pohja                               |
 | [scripts/bootstrap.py](scripts/bootstrap.py)                                   | Projektipohjan tarkistus ja valinnainen paketointi     |
 | [tests/test_bootstrap.py](tests/test_bootstrap.py)                             | Bootstrap-työkalun regressiotestit                     |
+| [tests/test_design.py](tests/test_design.py)                                   | Designrakenteen ja lähdekuvien regressiotestit           |
 
 ## Skillit
 
 Skill on uudelleenkäytettävä toimintaresepti tietynlaiseen tehtävään.
 
-Project Bootstrap sisältää 15 yleiskäyttöistä skilliä:
+Project Bootstrap sisältää 18 yleiskäyttöistä skilliä:
 
 `grill-with-docs` · `grill-me` · `domain-modeling` · `research` · `prototype` · `to-spec` ·
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
-`security-review` · `release-readiness` · `handoff`
+`security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
 
 Skillit eivät anna lupaa ohittaa projektin päätösvaltaa tai muita sääntöjä.
 
@@ -122,6 +124,19 @@ Skill voidaan lukea suoraan tiedostopolun kautta ilman erillistä asennusta. Run
 Projektikohtaiset skillit versioidaan projektin mukana.
 
 Katso [skills/README.md](skills/README.md).
+
+## Visuaalisen projektin design
+
+[Alustuksessa](docs/INITIALIZE.md#visual-or-non-visual-project) valitaan, tuottaako projekti
+käyttöliittymiä tai muuta visuaalista sisältöä, kuten esityksiä tai brändättyjä dokumentteja.
+Visuaalinen projekti määrittää kerran [designin](design/DESIGN.md), [semanttiset tokenit](design/tokens.css)
+ja [referenssien käyttötavat](design/references/README.md). Olemassa oleva hyväksytty ilme säilytetään.
+Mukana ovat Design DNA, vältettävät tyylit ja säännöt perusteettoman geneerisen AI-ilmeen torjumiseksi.
+
+Agentti lukee tämän kontekstin ennen visuaalisia muutoksia. Visuaalinen arviointi käyttää
+todellista renderöityä lopputulosta ja nykyistä arviointimallia. Ei-visuaalinen projekti
+merkitsee designin pois käytöstä eikä tarvitse briefiä tai visuaalista arviointia.
+OpenDesignia, erillistä palvelua tai uutta hyväksyntäprosessia ei tarvita.
 
 ## Projektipohjan tarkistus
 

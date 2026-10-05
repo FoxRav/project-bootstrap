@@ -58,6 +58,25 @@ No adapter, global installation, permission override or vendor metadata is insta
 this foundation. A new runtime should first demonstrate selected-file loading without
 loading every skill or treating its output as approval.
 
+## Visual context loading
+
+For UI and other visual output, follow the explicit path route in
+[AGENTS.md](../AGENTS.md) before changing components, layout, fonts, colors or effects:
+read [manifest](../design/manifest.json), [DESIGN.md](../design/DESIGN.md),
+[tokens](../design/tokens.css), [reference index](../design/references/README.md), the
+relevant approved references and existing output. Select the applicable design recipe
+from the router. Template/draft/disabled status cannot stand in for an approved visual
+baseline; non-visual work does not load this branch.
+
+This instruction-based route is portable to Codex, Cursor and other agents able to read
+repository files and SKILL.md. It does not assert native discovery in any editor. Verify
+a fresh session can identify these sources before a harmless visual task; also exercise
+a non-visual task and confirm it does not invent a design requirement. Test any native
+adapter in its own runtime separately. Context lives in Git-versioned project files,
+not vendor memory. OpenDesign is not installed or required; a future optional adapter
+could map these files without becoming design authority. No adapter/API compatibility
+is implemented or claimed here.
+
 ## Workflows and permissions
 
 The official workflow guidance uses explicit goals, context, constraints and verification,

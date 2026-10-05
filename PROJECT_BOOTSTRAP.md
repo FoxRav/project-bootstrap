@@ -83,6 +83,20 @@ may live under `skills/project/<skill-name>/SKILL.md`, versioned with the projec
 linked from its context. Runtime discovery belongs in the runtime adapter. Skills do
 not add mandatory workflow stages or mandatory review packaging.
 
+### Project design context
+
+Visual projects keep persistent design intent in [design/DESIGN.md](design/DESIGN.md),
+semantic values in [tokens](design/tokens.css) and scoped reference use in the
+[reference index](design/references/README.md). The [manifest](design/manifest.json)
+records applicability/readiness, not approval. Initialize once using
+[the visual-project checklist](docs/INITIALIZE.md#visual-or-non-visual-project), then
+maintain this context as the product changes. Non-visual projects do not require a brief,
+token adoption or visual review. Before visual implementation, load applicable design
+context and existing output; preserve approved identity unless the task authorizes change.
+The design source order operates inside §1, never above project authority or this policy.
+Visual findings and rendered evidence use the existing work/review record and §5 gate;
+there is no separate design lifecycle, reviewer organization or approval system.
+
 ## 3. Work size and lifecycle
 
 A change is **non-trivial** if any of these applies: multiple architectural components;
