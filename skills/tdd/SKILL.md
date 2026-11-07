@@ -19,7 +19,7 @@ A trivial documentation or mechanical edit has no useful behavioral assertion. U
 
 ## Required context
 
-Read the bounded task, affected implementation and tests, relevant domain rules and [testing commands](../../docs/TESTING.md). Inspect baseline behavior before choosing a test boundary.
+Read the bounded task, affected implementation and tests, relevant domain rules and [testing commands](../../docs/TESTING.md). Inspect baseline behavior before choosing a test boundary. For a broader risk-based test portfolio or acceptance-evidence plan, consult [testing-strategy](../testing-strategy/SKILL.md); TDD remains the implementation-time red-green-refactor procedure.
 
 ## Inputs
 

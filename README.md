@@ -8,7 +8,7 @@ Project Bootstrap on uudelleenkäytettävä projektipohja ihmisen ja AI-koodausa
 
 Kun aloitat uuden projektin, kloonaat tämän repon tai kopioit sen lähdetiedostot ja täytät projektin omat tiedot.
 
-Pohja sopii sekä ensimmäistä sovellustaan rakentavalle että kokeneelle tiimille. Se antaa yhteiset työskentelysäännöt, 18 yleiskäyttöistä skilliä sekä valinnaisen webhook-skillin ja uudelleenkäytettävät työ- ja arviointipohjat. Webhook-skill valitaan vain webhookeja sisältävissä projekteissa. Pohja ei sido sovelluskehystä tai AI-palvelua.
+Pohja sopii sekä ensimmäistä sovellustaan rakentavalle että kokeneelle tiimille. Se antaa yhteiset työskentelysäännöt, 18 yleiskäyttöistä skilliä, 13 tehtävän mukaan ladattavaa teknistä skilliä, neljä kohdennettua viiteohjetta sekä uudelleenkäytettävät työ- ja arviointipohjat. Teknisiä ohjeita käytetään vain niitä koskevissa projekteissa ja tehtävissä. Pohja ei sido sovelluskehystä tai AI-palvelua.
 
 Versio: [BOOTSTRAP_VERSION](BOOTSTRAP_VERSION)
 
@@ -111,15 +111,18 @@ Tarkat rajat löytyvät [toimintaperiaatteista](PROJECT_BOOTSTRAP.md).
 
 Skill on uudelleenkäytettävä toimintaresepti tietynlaiseen tehtävään.
 
-Project Bootstrap sisältää 18 yleiskäyttöistä skilliä ja yhden valinnaisen webhook-skillin:
+Project Bootstrap sisältää 18 yleiskäyttöistä skilliä ja 13 valinnaista teknistä skilliä:
 
 `grill-with-docs` · `grill-me` · `domain-modeling` · `research` · `prototype` · `to-spec` ·
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
 `security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
 
-Webhook-projekteissa käytettävä [webhooks-skill](skills/webhooks/SKILL.md) kattaa
-toimituksen, varmennuksen, uudelleenyritykset ja testauksen. Se ei ole muiden projektien
-oletus tai uusi pakollinen työvaihe.
+Valinnaisiin teknisiin skilleihin kuuluvat webhooks, system-design, api-design,
+database-engineering, distributed-systems, application-security,
+performance-observability, delivery-engineering, testing-strategy, data-engineering,
+ai-systems, caching ja concurrency. Neljä kohdennettua viiteohjetta käsittelevät
+ohjelmointiperiaatteita, maksuja, ilmoituksia ja reaaliaikaista mediaa. Ne ovat
+reititettyjä tehtäväkohtaisesti, eivätkä edellytä teknologian käyttöönottoa.
 
 Skillit eivät anna lupaa ohittaa projektin päätösvaltaa tai muita sääntöjä.
 

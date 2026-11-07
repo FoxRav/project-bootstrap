@@ -1,7 +1,7 @@
 # Project context — canonical bootstrap
 
 Status: current for bootstrap maintenance; replace when starting a product.
-Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-10-04.
+Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-11-08.
 Adopted foundation: [BOOTSTRAP_VERSION](../BOOTSTRAP_VERSION). Local deviations: none.
 
 ## Product intent
@@ -25,10 +25,11 @@ data is part of this repository.
   the replaceable runtime adapter. Projects may split facts into PRD/architecture/
   security/glossary files later, keeping one canonical location per fact.
 - `templates/` contains forms, not active requirements or approvals.
-- `skills/` holds 18 general recipes and one optional webhook recipe with selective
-  routing; project copies can add local domain recipes. Policy remains in the bootstrap;
-  runtime discovery is an adapter. Webhook guidance applies only when a project uses
-  webhook flows.
+- `skills/` holds 18 general recipes and 13 task-selected technical recipes plus four
+  focused reference guides. The files are part of the canonical foundation; only their
+  loading/use is conditional. Project copies can add local domain recipes. Policy
+  remains in the bootstrap; runtime discovery is an adapter. Each recipe/reference
+  applies only to its routed task.
 - `design/` holds an unconfigured, persistent design template for visual projects.
   Manifest status is `template` here; no product identity or compliant rendered UI is
   claimed. Existing README artwork is preserved, not a brief to invent a new brand.

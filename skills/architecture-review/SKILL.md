@@ -19,7 +19,7 @@ A local mechanical change has no architectural consequence. Do not start a gener
 
 ## Required context
 
-Read [project context](../../docs/PROJECT.md), scoped requirements, architecture/accepted ADRs, the actual design or diff, relevant call/data paths and tests.
+Read [project context](../../docs/PROJECT.md), scoped requirements, architecture/accepted ADRs, the actual design or diff, relevant call/data paths and tests. For an architecture design task, consult [system-design](../system-design/SKILL.md) for the applicable design procedure; this review remains independent and does not take over design or implementation. When reviewing an abstraction or pattern choice, use the [programming principles reference](../references/programming-principles.md) as a decision aid, not a checklist.
 
 ## Inputs
 

@@ -19,7 +19,7 @@ No plausible security boundary is affected. Do not attach a generic checklist to
 
 ## Required context
 
-Read scoped requirements, [project context and hazards](../../docs/PROJECT.md), relevant architecture/auth decisions, affected code/configuration/dependencies and tests/evidence.
+Read scoped requirements, [project context and hazards](../../docs/PROJECT.md), relevant architecture/auth decisions, affected code/configuration/dependencies and tests/evidence. For a security-control design or implementation task, route to [application-security](../application-security/SKILL.md); this skill remains the independent threat review, not the implementation procedure.
 
 ## Inputs
 

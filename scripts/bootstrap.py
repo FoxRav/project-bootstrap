@@ -32,8 +32,23 @@ UNIVERSAL_SKILLS = (
     "diagnose-bug", "code-review", "security-review", "release-readiness", "handoff",
     "design-brief", "ui-design", "visual-review",
 )
-OPTIONAL_SKILLS = ("webhooks",)
+OPTIONAL_SKILLS = (
+    "webhooks", "system-design", "api-design", "database-engineering",
+    "distributed-systems", "application-security", "performance-observability",
+    "delivery-engineering", "testing-strategy", "data-engineering", "ai-systems",
+    "caching", "concurrency",
+)
 ALL_SKILLS = UNIVERSAL_SKILLS + OPTIONAL_SKILLS
+REFERENCES = (
+    "skills/references/programming-principles.md",
+    "skills/references/payments.md",
+    "skills/references/notifications.md",
+    "skills/references/realtime-media.md",
+)
+REFERENCE_HEADINGS = (
+    "Purpose", "Use when", "Procedure", "Decision points",
+    "Approval boundaries", "Outputs and evidence", "Sources",
+)
 SKILL_HEADINGS = (
     "Purpose", "Use when", "Do not use when", "Required context", "Inputs", "Process",
     "Decision points", "Approval boundaries", "Outputs", "Completion criteria",
@@ -50,7 +65,7 @@ SOURCES = tuple(sorted((
     "templates/PROJECT_CONTEXT_TEMPLATE.md", "templates/REVIEW_TEMPLATE.md",
     "templates/WORK_ITEM_TEMPLATE.md", "scripts/bootstrap.py",
     "tests/test_bootstrap.py", "tests/test_design.py",
-) + tuple(f"skills/{name}/SKILL.md" for name in ALL_SKILLS)))
+) + tuple(f"skills/{name}/SKILL.md" for name in ALL_SKILLS) + REFERENCES))
 PNG_SOURCES = {"docs/assets/project-bootstrap-hero.png"}
 EMPTY_SOURCES = {"design/assets/.gitkeep"}
 DESIGN_PATHS = {
@@ -285,6 +300,25 @@ def check_skills(root: Path, sources: dict[str, bytes]) -> None:
         require_link(name, "skills/README.md#shared-contract")
         require_link("skills/README.md", name)
         check_skill_policy(name, description + "\n\n" + body)
+    for name in REFERENCES:
+        text = sources[name].decode("utf-8")
+        if text.startswith("---\n"):
+            raise ValueError(f"Reference guidance must not use skill metadata: {name}")
+        visible = re.sub(r"```.*?```|~~~.*?~~~", "", text, flags=re.S)
+        parts = re.split(r"^## ([^\n]+)\n", visible, flags=re.M)
+        if tuple(parts[1::2]) != REFERENCE_HEADINGS:
+            raise ValueError(f"Missing, duplicate or out-of-order reference headings: {name}")
+        sections = dict(zip(parts[1::2], parts[2::2]))
+        if any(not section.strip() for section in sections.values()):
+            raise ValueError(f"Empty reference section: {name}")
+        if not re.search(r"^1\. \S", sections["Procedure"], re.M):
+            raise ValueError(f"Reference needs an ordered procedure: {name}")
+        require_link(name, "skills/README.md#shared-contract")
+        for anchor in ("1-authority-and-evidence", "4-autonomy-and-approval-boundaries",
+                       "5-one-quality-and-completion-model", "git-authority",
+                       "optional-review-packaging"):
+            require_link(name, f"PROJECT_BOOTSTRAP.md#{anchor}")
+        check_skill_policy(name, text)
 
 
 def check_png(name: str, data: bytes) -> None:
@@ -524,7 +558,7 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     try:
         sources, links = validate(root, tuple(getattr(args, "include_review", ())))
         print(f"PASS: {len(sources)} source files; {links} local links/fragments; "
-              f"{len(UNIVERSAL_SKILLS)} general skills and {len(OPTIONAL_SKILLS)} optional skill; "
+              f"{len(UNIVERSAL_SKILLS)} general skills and {len(OPTIONAL_SKILLS)} optional skills; "
               "design structure/tokens, PNG framing/CRC; "
               "version, text hygiene, Python syntax "
               "and bounded credential/policy scans")

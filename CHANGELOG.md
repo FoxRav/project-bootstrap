@@ -3,6 +3,22 @@
 This records canonical foundation releases, not the copied application's releases.
 Version semantics and adoption policy: [PROJECT_BOOTSTRAP.md §7](PROJECT_BOOTSTRAP.md#7-living-knowledge-git-and-versions).
 
+## 2.4.0 — 2026-11-08
+
+Added 12 task-selected technical skills and four focused reference guides for system
+and API design, data/database work, local concurrency and caching, distributed
+boundaries, application security, performance/observability, delivery, testing,
+AI systems, programming principles, payments, notifications and real-time media.
+All are canonical Bootstrap content; routing and progressive disclosure make their use
+conditional on the current task. Extended the closed source inventory, bounded policy
+validation, negative regression tests, source provenance and Finnish/English
+documentation. No dependencies, required workflow stage, product contract or change
+to authority, approval, quality or Git policy.
+
+Compatible minor capability addition. The 18 general-purpose recipes remain
+unconditional foundation guidance; the 13 technical recipes and four references are
+loaded only when relevant. Existing webhook-specific controls remain in place.
+
 ## 2.3.0 — 2026-11-07
 
 Added an optional webhook skill, routed only for projects that send or receive webhooks.

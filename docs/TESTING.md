@@ -1,6 +1,6 @@
 # Validation for the canonical bootstrap
 
-Owner: bootstrap maintainer. Verified: 2026-10-04.
+Owner: bootstrap maintainer. Verified: 2026-11-08.
 This is the project command registry for [the universal quality model](../PROJECT_BOOTSTRAP.md#5-one-quality-and-completion-model).
 Replace it when initializing a product; these checks do not validate application code.
 
@@ -69,9 +69,13 @@ tool as a general-purpose product packager or a substitute for a full secret sca
 
 ## Applicability and review
 
-Skill validation requires all 18 general recipes and each explicitly catalogued optional
-recipe, with matching metadata/title, nonempty standard headings in order, an ordered
+Skill validation requires all 18 general recipes and all 13 task-selected technical
+recipes, with matching metadata/title, nonempty standard headings in order, an ordered
 process, router/entry-point links and references to the shared authority contract.
+Four catalogued reference guides are validated for ordered, nonempty task instructions,
+links to the shared authority/approval/quality/Git/packaging policy and the same bounded
+policy-pattern checks. References deliberately do not require skill metadata. These
+structural and pattern checks do not constitute semantic security review.
 Canonical metadata uses a small YAML-compatible
 subset: plain `name` and a single-line double-quoted `description` with JSON escaping;
 no YAML library or runtime installation is needed. The closed inventory rejects
@@ -99,7 +103,7 @@ rights manually when adding/changing assets. Only the named empty directory plac
 may omit text/newline checks; unknown binaries still fail inventory and all real text
 keeps its existing checks. Packaging preserves binary and empty-file bytes exactly.
 
-The bounded skill-policy scan rejects common automatic Git, approval-bypass and mandatory
+The bounded skill/reference-policy scan rejects common automatic Git, approval-bypass and mandatory
 ZIP directives, including in descriptions and the router. It is a regression guard,
 not a natural-language proof: paraphrases, mixed clauses and indirect instructions can
 escape pattern matching. Independent semantic review must assess authority, test integrity,
@@ -108,6 +112,45 @@ repository facts versus unanswered product choices, a blocked schema slice, a fa
 valid test, read-only review of dirty/untracked code and a release awaiting approval.
 Record which recipes were exercised; a tabletop is not application execution or a full
 agent benchmark. Recheck any native discovery adapter in its actual runtime separately.
+
+For the 2.4 technical recipes, acceptance walkthroughs include: a same-operation HTTP
+retry with the same idempotency key (not arbitrary identical POST requests); a
+single-process cache and in-process race routed to `caching`/`concurrency` without
+requiring distributed architecture; a non-webhook outbound URL routed to
+`application-security` for SSRF controls, with a fixed approved internal service
+allowed only for its configured destination/protocol/port/purpose and an attempt to
+redirect the same user-driven fetch to an unapproved internal or metadata target denied;
+a GraphQL subscription distinguished from a schema-change feed; GCM authenticated
+encryption distinguished from separate key management; and Kafka offset progress that
+waits for completed partition work despite gaps or out-of-order completion, following
+the selected client version. Payment,
+notification, media and programming-principle requests should route to their focused
+references. These are semantic instruction/design walkthroughs: they do not prove
+future application runtime behavior, implementation correctness or security.
+
+For data-pipeline recovery, walk “result exists only in memory → process attempts to
+advance checkpoint → process crashes.” The procedure must prevent checkpoint advance
+until output is durable or a persisted pending-work record and recovery responsibility
+are transferred consistently; after restart, an identified worker must resume the
+work, with duplicate and external-side-effect handling defined. Source retention or
+possible manual replay alone is not acceptable recovery evidence. This walkthrough
+evaluates the instruction's recovery rule, not a future pipeline's runtime behavior.
+
+Routing regression checks assert the conditional links from `architecture-review` to
+`system-design`, `security-review` to `application-security`, `tdd` to
+`testing-strategy`, and `webhooks` to `api-design`. They establish that the routes exist,
+not that the linked procedures are semantically correct or automatically loaded.
+
+Focused scenario outcomes:
+
+| Scenario | Required decision in the guidance |
+| --- | --- |
+| Data result is only in memory; source checkpoint is about to advance; process crashes | Do not advance until the output is durable or a durable pending-work record (resume identity/payload/reference/status/owner) is persisted first and the restart worker will consume it. If checkpoint update follows separately, replay is safe through idempotency/reconciliation; source retention/manual replay alone is insufficient. |
+| Application calls a pre-approved internal service | Allow only its configured service identity, protocol, port and purpose; application and network egress controls enforce the same narrow boundary. |
+| User supplies an unauthorized internal/metadata URL or redirects an allowed fetch there | Reject it; user-provided data cannot extend the destination set. Validate DNS/resolved address at connection time and reapply policy to redirects and retries. |
+
+These are instruction-level semantic walkthroughs, not tests of runtime behavior or
+security of a future application.
 
 For design recipes, also walk initialization of a non-visual utility, a visual product
 with an existing brand, and one with unresolved identity. Exercise a scoped UI change,

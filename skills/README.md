@@ -28,10 +28,27 @@ skills or run the whole route by default. For example: "Use
 | Specific candidate needs a release recommendation | [release-readiness](release-readiness/SKILL.md) |
 | Work must resume in a fresh context | [handoff](handoff/SKILL.md) |
 | Project sends or receives webhooks, or needs asynchronous completion events | [webhooks](webhooks/SKILL.md) (optional; only for webhook projects) |
+| System boundary, component choice, failure modes or quality trade-offs | [system-design](system-design/SKILL.md) (optional technical recipe) |
+| HTTP, GraphQL, RPC or event contract and compatibility | [api-design](api-design/SKILL.md) (optional technical recipe) |
+| Persistent model, query, transaction, index or migration | [database-engineering](database-engineering/SKILL.md) (optional technical recipe) |
+| Batch/stream ingestion, CDC, checkpoints, replay or derived data | [data-engineering](data-engineering/SKILL.md) (optional technical recipe) |
+| Remote boundary, broker, partial failure or multi-process delivery | [distributed-systems](distributed-systems/SKILL.md) (optional technical recipe) |
+| Authentication, secrets, cryptography, sensitive data or outbound URLs | [application-security](application-security/SKILL.md) (optional technical recipe) |
+| Measured latency, capacity, reliability or telemetry | [performance-observability](performance-observability/SKILL.md) (optional technical recipe) |
+| Build, infrastructure, deployment, rollback, backup or restore | [delivery-engineering](delivery-engineering/SKILL.md) (optional technical recipe) |
+| Risk-based validation plan or acceptance evidence | [testing-strategy](testing-strategy/SKILL.md) (optional technical recipe) |
+| Model-based product behavior, tools, evaluation or AI safety | [ai-systems](ai-systems/SKILL.md) (optional technical recipe) |
+| Local or shared cache, freshness, invalidation or cache failure | [caching](caching/SKILL.md) (optional technical recipe) |
+| In-process threads, async tasks, shared state or resource bounds | [concurrency](concurrency/SKILL.md) (optional technical recipe) |
+| Reusable principles and pattern selection | [programming-principles](references/programming-principles.md) (load with the relevant skill) |
+| Payment initiation, provider callbacks or reconciliation | [payments](references/payments.md) (load with the relevant skill) |
+| Email, SMS, push or in-product delivery | [notifications](references/notifications.md) (load with the relevant skill) |
+| Live audio/video, WebRTC or media delivery | [realtime-media](references/realtime-media.md) (load with the relevant skill) |
 
-The webhook recipe is optional and is activated only by a project/task with webhook
-flows. Its presence does not make webhooks, webhook infrastructure or additional workflow
-stages requirements for other projects.
+The webhook recipe and 12 technical recipes are included in the foundation but loaded
+only when relevant. The four focused references are likewise loaded only with the
+matching task. Their presence does not make their technologies, infrastructure or
+additional workflow stages requirements for other projects.
 
 Choose by the current uncertainty, not by the size of the catalogue. One skill may
 hand off to another only when that next task is needed and authorized. Use the

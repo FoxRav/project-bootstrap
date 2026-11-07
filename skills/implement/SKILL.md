@@ -19,7 +19,7 @@ The user requested review only or unresolved product decisions block the change.
 
 ## Required context
 
-Read the active work item, [project context](../../docs/PROJECT.md), applicable scoped instructions, affected code/tests and relevant accepted ADRs. Use [testing commands](../../docs/TESTING.md).
+Read the active work item, [project context](../../docs/PROJECT.md), applicable scoped instructions, affected code/tests and relevant accepted ADRs. Use [testing commands](../../docs/TESTING.md). Load the [programming principles reference](../references/programming-principles.md) when a concrete abstraction or design-pattern choice is part of the task.
 
 ## Inputs
 
