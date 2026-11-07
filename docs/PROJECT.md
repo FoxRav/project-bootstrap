@@ -25,8 +25,10 @@ data is part of this repository.
   the replaceable runtime adapter. Projects may split facts into PRD/architecture/
   security/glossary files later, keeping one canonical location per fact.
 - `templates/` contains forms, not active requirements or approvals.
-- `skills/` holds 18 universal recipes with selective routing; project copies can add
-  local domain recipes. Policy remains in the bootstrap; runtime discovery is an adapter.
+- `skills/` holds 18 general recipes and one optional webhook recipe with selective
+  routing; project copies can add local domain recipes. Policy remains in the bootstrap;
+  runtime discovery is an adapter. Webhook guidance applies only when a project uses
+  webhook flows.
 - `design/` holds an unconfigured, persistent design template for visual projects.
   Manifest status is `template` here; no product identity or compliant rendered UI is
   claimed. Existing README artwork is preserved, not a brief to invent a new brand.

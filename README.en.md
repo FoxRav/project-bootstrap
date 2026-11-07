@@ -6,7 +6,7 @@ A reusable foundation for people and AI coding agents to build software together
 
 Clone or copy this repository when starting a new project, then replace the project context with your own goals, constraints and commands.
 
-Project Bootstrap gives people and AI coding agents shared working rules, 18 task-specific skills and reusable work and review templates.
+Project Bootstrap gives people and AI coding agents shared working rules, 18 general-purpose skills, one optional webhook skill and reusable work and review templates. The webhook skill is selected only for projects that use webhooks.
 
 It is designed for solo builders and teams. It does not require a specific application framework, AI provider or subscription.
 
@@ -111,11 +111,15 @@ See [PROJECT_BOOTSTRAP.md](PROJECT_BOOTSTRAP.md) for the canonical authority and
 
 A skill is a reusable procedure for one class of work.
 
-Project Bootstrap contains 18 universal skills:
+Project Bootstrap contains 18 general-purpose skills and one optional webhook skill:
 
 `grill-with-docs` · `grill-me` · `domain-modeling` · `research` · `prototype` · `to-spec` ·
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
 `security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
+
+For webhook projects, the [webhooks skill](skills/webhooks/SKILL.md) covers delivery,
+verification, retries and testing. It is not a default for other projects or a new
+mandatory workflow stage.
 
 Skills do not grant permission to bypass project authority or other rules.
 

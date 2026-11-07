@@ -32,6 +32,8 @@ UNIVERSAL_SKILLS = (
     "diagnose-bug", "code-review", "security-review", "release-readiness", "handoff",
     "design-brief", "ui-design", "visual-review",
 )
+OPTIONAL_SKILLS = ("webhooks",)
+ALL_SKILLS = UNIVERSAL_SKILLS + OPTIONAL_SKILLS
 SKILL_HEADINGS = (
     "Purpose", "Use when", "Do not use when", "Required context", "Inputs", "Process",
     "Decision points", "Approval boundaries", "Outputs", "Completion criteria",
@@ -48,7 +50,7 @@ SOURCES = tuple(sorted((
     "templates/PROJECT_CONTEXT_TEMPLATE.md", "templates/REVIEW_TEMPLATE.md",
     "templates/WORK_ITEM_TEMPLATE.md", "scripts/bootstrap.py",
     "tests/test_bootstrap.py", "tests/test_design.py",
-) + tuple(f"skills/{name}/SKILL.md" for name in UNIVERSAL_SKILLS)))
+) + tuple(f"skills/{name}/SKILL.md" for name in ALL_SKILLS)))
 PNG_SOURCES = {"docs/assets/project-bootstrap-hero.png"}
 EMPTY_SOURCES = {"design/assets/.gitkeep"}
 DESIGN_PATHS = {
@@ -242,10 +244,10 @@ def check_skills(root: Path, sources: dict[str, bytes]) -> None:
                    "5-one-quality-and-completion-model", "git-authority",
                    "optional-review-packaging"):
         require_link("skills/README.md", f"PROJECT_BOOTSTRAP.md#{anchor}")
-    for skill in UNIVERSAL_SKILLS:
+    for skill in ALL_SKILLS:
         name = f"skills/{skill}/SKILL.md"
         if name not in sources:
-            raise ValueError(f"Missing universal skill: {name}")
+            raise ValueError(f"Missing catalogued skill: {name}")
         text = sources[name].decode("utf-8")
         front = re.match(r"\A---\n(.*?)\n---\n", text, re.S)
         if not front:
@@ -522,7 +524,8 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     try:
         sources, links = validate(root, tuple(getattr(args, "include_review", ())))
         print(f"PASS: {len(sources)} source files; {links} local links/fragments; "
-              f"{len(UNIVERSAL_SKILLS)} skills; design structure/tokens, PNG framing/CRC; "
+              f"{len(UNIVERSAL_SKILLS)} general skills and {len(OPTIONAL_SKILLS)} optional skill; "
+              "design structure/tokens, PNG framing/CRC; "
               "version, text hygiene, Python syntax "
               "and bounded credential/policy scans")
         if args.command == "package":

@@ -27,6 +27,11 @@ skills or run the whole route by default. For example: "Use
 | Sensitive assets or trust/capability boundaries change | [security-review](security-review/SKILL.md) |
 | Specific candidate needs a release recommendation | [release-readiness](release-readiness/SKILL.md) |
 | Work must resume in a fresh context | [handoff](handoff/SKILL.md) |
+| Project sends or receives webhooks, or needs asynchronous completion events | [webhooks](webhooks/SKILL.md) (optional; only for webhook projects) |
+
+The webhook recipe is optional and is activated only by a project/task with webhook
+flows. Its presence does not make webhooks, webhook infrastructure or additional workflow
+stages requirements for other projects.
 
 Choose by the current uncertainty, not by the size of the catalogue. One skill may
 hand off to another only when that next task is needed and authorized. Use the

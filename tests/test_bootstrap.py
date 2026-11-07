@@ -153,16 +153,20 @@ class BootstrapTests(unittest.TestCase):
             b.source_snapshot(self.root)
 
     def test_required_skill_inventory(self):
-        expected = {
+        expected_general = {
             "grill-with-docs", "grill-me", "domain-modeling", "research", "prototype",
             "to-spec", "architecture-review", "to-tickets", "implement", "tdd",
             "diagnose-bug", "code-review", "security-review", "release-readiness", "handoff",
             "design-brief", "ui-design", "visual-review",
         }
-        self.assertEqual(set(b.UNIVERSAL_SKILLS), expected)
+        expected_optional = {"webhooks"}
+        self.assertEqual(set(b.UNIVERSAL_SKILLS), expected_general)
+        self.assertEqual(set(b.OPTIONAL_SKILLS), expected_optional)
+        self.assertNotIn("webhooks", b.UNIVERSAL_SKILLS)
+        self.assertEqual(set(b.ALL_SKILLS), expected_general | expected_optional)
         self.seed()
         sources, _ = b.validate(self.root)
-        for skill in expected:
+        for skill in expected_general | expected_optional:
             name = f"skills/{skill}/SKILL.md"
             with self.subTest(skill=skill):
                 path = self.root / name
@@ -170,6 +174,14 @@ class BootstrapTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "missing"):
                     b.source_snapshot(self.root)
                 path.write_bytes(sources[name])
+
+    def test_webhooks_skill_is_routed_only_for_webhook_projects(self):
+        skill = (b.ROOT / "skills/webhooks/SKILL.md").read_text(encoding="utf-8")
+        router = (b.ROOT / "skills/README.md").read_text(encoding="utf-8")
+        self.assertIn("webhook", skill.split("## Use when", 1)[1].split("## Do not use when", 1)[0].lower())
+        self.assertIn("webhooks/SKILL.md", router)
+        self.assertIn("only for webhook projects", router)
+        self.assertIn("only", skill.split("## Do not use when", 1)[1].split("## Required context", 1)[0].lower())
 
     def test_skill_metadata_rejects_invalid_name_description_and_duplicates(self):
         self.seed()

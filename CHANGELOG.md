@@ -3,6 +3,20 @@
 This records canonical foundation releases, not the copied application's releases.
 Version semantics and adoption policy: [PROJECT_BOOTSTRAP.md §7](PROJECT_BOOTSTRAP.md#7-living-knowledge-git-and-versions).
 
+## 2.3.0 — 2026-11-07
+
+Added an optional webhook skill, routed only for projects that send or receive webhooks.
+It covers secure signature verification and replay/deduplication controls, resilient
+delivery, SSRF and secret handling, observability, API descriptions and focused tests.
+Updated the canonical skill inventory, validation tests, project context, source
+provenance and Finnish/English introductions. No new dependency, universal webhook
+contract, mandatory workflow stage or change to authority, approval, quality or Git
+policy.
+
+Minor version: compatible conditional capability. The 18 general-purpose skills remain
+unchanged; the webhook skill is opt-in by task applicability and does not add a gate to
+projects without webhook flows.
+
 ## 2.2.0 — 2026-10-04
 
 Added persistent design context, semantic tokens, reference guidance and visual review

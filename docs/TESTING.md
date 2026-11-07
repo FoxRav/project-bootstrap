@@ -69,9 +69,10 @@ tool as a general-purpose product packager or a substitute for a full secret sca
 
 ## Applicability and review
 
-Skill validation requires all 18 universal recipes, matching metadata/title, nonempty
-standard headings in order, an ordered process, router/entry-point links and references
-to the shared authority contract. Canonical metadata uses a small YAML-compatible
+Skill validation requires all 18 general recipes and each explicitly catalogued optional
+recipe, with matching metadata/title, nonempty standard headings in order, an ordered
+process, router/entry-point links and references to the shared authority contract.
+Canonical metadata uses a small YAML-compatible
 subset: plain `name` and a single-line double-quoted `description` with JSON escaping;
 no YAML library or runtime installation is needed. The closed inventory rejects
 accidental files such as historical bootstrap work records outside the excluded outputs.
