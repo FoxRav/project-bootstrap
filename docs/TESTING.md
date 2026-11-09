@@ -161,6 +161,21 @@ UI changes, use [the visual worksheet](../design/qa/visual-review.md) within the
 review evidence; verify relevant states, viewport/page sizes and accessibility with the
 product's real tools. This template has no rendered product UI to certify.
 
+For the 2.4.1 quality improvements, walk these instruction-level scenarios:
+
+| Scenario | Required decision in the guidance |
+| --- | --- |
+| A suspected security issue appears reachable, but a current authorization guard blocks its effect | Treat it as a candidate; independently reread the source and verify the guard. Reject the vulnerability claim with evidence; if useful, record optional hardening separately. |
+| A security candidate depends on deployment policy or cannot be safely reproduced | Keep it unconfirmed as `needs validation`, name the exact missing fact and bounded safe check, and do not assign vulnerability severity. |
+| A change satisfies the written requirement but introduces a concrete correctness or maintainability defect | Report requirements conformance separately from technical quality; cite the changed path and observed test/code evidence rather than letting one pass mask the other. |
+| A bug symptom has several plausible causes | Record the prediction and result for each discriminating probe; state a root cause only when the causal chain is supported, otherwise report what remains unproven. |
+| A verified failure pattern recurs | Recommend one targeted regression test or one canonical guidance update; do not silently duplicate or change policy. |
+| A React/Vite route or component changes | Use existing project scripts and browser tools to check the affected states, direct route entry/refresh when applicable, keyboard task completion, visible focus, and supported narrow/wide layouts; run configured lint/type/test/build checks. Mark unavailable render or interaction evidence NOT RUN/BLOCKED. |
+
+These scenarios check whether the recipes direct review and evidence appropriately.
+They do not prove that a future security finding is correct, a React/Vite application
+works at runtime, or a rendered interface conforms to WCAG.
+
 Normal layers are text/structure checks, Python syntax parsing, unit/negative-path
 tests and bounded credential scanning. Package build/integrity checks apply only when
 creating or verifying a selected review/handoff artifact, or testing the packaging tool.

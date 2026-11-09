@@ -94,7 +94,11 @@ Follow current primary specifications for
 [JWT best practices](https://www.rfc-editor.org/rfc/rfc8725.html) and
 [password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html);
 do not treat a framework default as proof that the application validates the right
-identity, audience or authorization.
+identity, audience or authorization. When security work surfaces a possible
+vulnerability, keep it a candidate until `security-review` independently validates
+the current source, controls and claimed effect. Record an exact validation gap rather
+than assigning severity to an unresolved candidate; keep design concerns and optional
+hardening distinct from confirmed vulnerabilities.
 
 ## Approval boundaries
 
@@ -106,7 +110,9 @@ require applicable approval. This recipe does not authorize live security testin
 ## Outputs
 
 Threat/control mapping, design decision, key/data lifecycle, implementation scope,
-negative tests, safe logging requirements and residual-risk record.
+negative tests, safe logging requirements and residual-risk record. If the task also
+produces vulnerability candidates, route their independent assessment through
+`security-review`; do not present a design concern as a confirmed vulnerability.
 
 ## Completion criteria
 
@@ -120,5 +126,6 @@ test results, redaction checks and limits. Do not claim a scan proves security.
 
 ## Handoff
 
-Use `security-review` for independent review, `webhooks` for webhook verification
-details, and `testing-strategy` for risk-based security-test selection.
+Use `security-review` for independent candidate validation and reporting,
+`webhooks` for webhook verification details, and `testing-strategy` for risk-based
+security-test selection.

@@ -19,12 +19,12 @@ skills or run the whole route by default. For example: "Use
 | Accepted spec needs bounded executable work items | [to-tickets](to-tickets/SKILL.md) |
 | Approved bounded implementation | [implement](implement/SKILL.md) |
 | Visual project needs a baseline or authorized identity update | [design-brief](design-brief/SKILL.md) |
-| Implement/change UI or other visual output | [ui-design](ui-design/SKILL.md) |
-| Assess rendered output against approved design and usability | [visual-review](visual-review/SKILL.md) |
+| Implement/change UI or other visual output, including responsive/accessibility requirements | [ui-design](ui-design/SKILL.md) |
+| Assess rendered UI for task usability, responsive states and accessibility using actual evidence | [visual-review](visual-review/SKILL.md) |
 | Behavior benefits from red-green-refactor | [tdd](tdd/SKILL.md) |
-| Unexpected behavior needs causal investigation | [diagnose-bug](diagnose-bug/SKILL.md) |
-| Actual implementation needs independent review | [code-review](code-review/SKILL.md) |
-| Sensitive assets or trust/capability boundaries change | [security-review](security-review/SKILL.md) |
+| Unexpected behavior needs evidence-led root-cause investigation | [diagnose-bug](diagnose-bug/SKILL.md) |
+| Actual implementation needs independent requirements-conformance and technical-quality review | [code-review](code-review/SKILL.md) |
+| Sensitive assets or trust/capability boundaries need independent threat/finding validation | [security-review](security-review/SKILL.md) |
 | Specific candidate needs a release recommendation | [release-readiness](release-readiness/SKILL.md) |
 | Work must resume in a fresh context | [handoff](handoff/SKILL.md) |
 | Project sends or receives webhooks, or needs asynchronous completion events | [webhooks](webhooks/SKILL.md) (optional; only for webhook projects) |

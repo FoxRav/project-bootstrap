@@ -266,6 +266,74 @@ class BootstrapTests(unittest.TestCase):
                 self.assertIn(condition, text)
         b.check_links(b.ROOT, sources)
 
+    def test_quality_recipes_keep_security_review_dispositions(self):
+        sources = b.source_snapshot(b.ROOT)
+        security_review = sources["skills/security-review/SKILL.md"].decode("utf-8")
+        application_security = sources["skills/application-security/SKILL.md"].decode("utf-8")
+        for required in (
+            "Treat each suspected issue as a candidate, not a finding.",
+            "Independently validate each material candidate",
+            "confirmed",
+            "needs validation",
+            "rejected",
+            "Keep optional hardening separate from confirmed",
+            "Do not assign severity to unresolved or rejected candidates.",
+            "keep confidence distinct from severity",
+        ):
+            with self.subTest(required=required):
+                self.assertIn(required, security_review)
+        self.assertIn("security-review` for independent candidate validation", application_security)
+
+    def test_quality_recipes_separate_review_axes_and_causal_debugging(self):
+        sources = b.source_snapshot(b.ROOT)
+        code_review = " ".join(
+            sources["skills/code-review/SKILL.md"].decode("utf-8").split()
+        )
+        diagnose_bug = " ".join(
+            sources["skills/diagnose-bug/SKILL.md"].decode("utf-8").split()
+        )
+        for required in (
+            "**Requirements conformance:**",
+            "**Technical quality:**",
+            "A pass in one dimension does not cancel a defect in the other.",
+            "observed result",
+        ):
+            with self.subTest(required=required):
+                self.assertIn(required, code_review)
+        for required in (
+            "exact command/input and observed result",
+            "causal chain from triggering conditions",
+            "When a verified cause recurs and generalizes",
+            "one update to the canonical project guidance",
+        ):
+            with self.subTest(required=required):
+                self.assertIn(required, diagnose_bug)
+
+    def test_frontend_quality_has_responsive_accessibility_and_react_vite_criteria(self):
+        sources = b.source_snapshot(b.ROOT)
+        ui_design = " ".join(
+            sources["skills/ui-design/SKILL.md"].decode("utf-8").split()
+        )
+        visual_review = sources["skills/visual-review/SKILL.md"].decode("utf-8")
+        scenarios = sources["docs/TESTING.md"].decode("utf-8")
+        for required in (
+            "For a React/Vite project",
+            "visible focus",
+            "supported narrow and wide layouts",
+        ):
+            with self.subTest(required=required):
+                self.assertIn(required, ui_design)
+        for required in (
+            "For React/Vite work",
+            "text scaling",
+            "reduced-motion",
+            "NOT RUN or BLOCKED",
+        ):
+            with self.subTest(required=required):
+                self.assertIn(required, visual_review)
+        self.assertIn("A React/Vite route or component changes", scenarios)
+        self.assertIn("works at runtime", scenarios)
+
     def test_skill_metadata_rejects_invalid_name_description_and_duplicates(self):
         self.seed()
         path = self.root / "skills/research/SKILL.md"

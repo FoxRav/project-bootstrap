@@ -117,6 +117,12 @@ Project Bootstrap contains 18 general-purpose skills and 13 optional technical s
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
 `security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
 
+Version 2.4.1 strengthens evidence-led security finding validation, separates
+requirements conformance from technical-quality review, sharpens causal debugging and
+adds task-specific responsive, accessibility and React/Vite acceptance prompts. These
+improvements refine existing skills; no new skill, dependency or mandatory workflow is
+introduced.
+
 The optional technical skills cover webhooks, system and API design, databases,
 distributed systems, application security, performance/observability, delivery,
 testing strategy, data engineering, AI systems, caching and concurrency. Four focused

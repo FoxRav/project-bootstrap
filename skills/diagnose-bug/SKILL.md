@@ -30,10 +30,20 @@ Symptom, expected/actual behavior, environment/version, reproduction information
 1. State the symptom and intended behavior with sources; preserve useful redacted evidence.
 2. Reproduce with the smallest safe input. Establish the baseline, including whether the failure predates current changes.
 3. Isolate affected paths, state and timing. Form ranked hypotheses and choose observations that distinguish them.
-4. Gather evidence using targeted tests/instrumentation or read-only history comparison; update hypotheses instead of making random fix attempts.
-5. Identify the root cause and affected cases, separating demonstrated cause from remaining uncertainty.
-6. Add a regression test where feasible, then make the minimal in-scope fix. Treat changes to unrelated code as separate work unless evidence makes them necessary.
-7. Run targeted validation, relevant broader regression validation and review the final change independently under the quality policy.
+4. Test one falsifiable hypothesis at a time with a targeted check. Record the exact
+   command/input and observed result, compare it with the prediction, and revise or
+   reject the hypothesis rather than making random fix attempts.
+5. Explain the causal chain from triggering conditions through the faulty mechanism
+   to the observed symptom. Distinguish a demonstrated root cause from a plausible
+   explanation and name the evidence that supports or weakens it.
+6. Add a regression test at a seam that exercises the real failure where feasible,
+   then make the minimal in-scope fix. Treat changes to unrelated code as separate
+   work unless evidence makes them necessary.
+7. When a verified cause recurs and generalizes, convert the lesson into one focused
+   regression test or one update to the canonical project guidance. Do not create
+   duplicate rules or change authority/policy without its existing approval.
+8. Run targeted validation, relevant broader regression validation and review the
+   final change independently under the quality policy.
 
 ## Decision points
 
@@ -45,7 +55,8 @@ Read and apply the [shared contract](../README.md#shared-contract). Shared/produ
 
 ## Outputs
 
-A causal explanation, reproduction/regression evidence and minimal fix, or a precisely bounded unresolved investigation.
+A causal explanation tied to observed evidence, reproduction/regression results and
+minimal fix, or a precisely bounded unresolved investigation.
 
 ## Completion criteria
 
@@ -53,7 +64,9 @@ For a fix, the original failure is addressed and relevant regressions/review are
 
 ## Evidence
 
-Record symptom, baseline, reproduction, hypotheses ruled in/out, root-cause evidence, test commands/results and any validation gaps.
+Record symptom, baseline, reproduction, each tested prediction and result, hypotheses
+ruled in/out, causal evidence, exact test commands/results, durable lesson if repeated,
+and any validation gaps.
 
 ## Handoff
 

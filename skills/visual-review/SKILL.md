@@ -28,12 +28,35 @@ Identified implementation state, actual rendered output or screenshots, relevant
 ## Process
 
 1. Establish scope, design applicability and evidence identity. Initially inspect read-only. A disabled manifest does not make actual UI work non-visual; report an unresolved baseline through the existing finding model.
-2. Inspect actual output at relevant viewport/page sizes and states. State whether inspection used a running product or screenshots and what interaction evidence is available. Never claim to have viewed unavailable references or output.
+2. Inspect actual output at the project's supported viewport/page sizes and relevant
+   states, including narrow and wide layouts when the product supports them. State
+   whether inspection used a running product or screenshots and what interaction
+   evidence is available. Never claim to have viewed unavailable references or output.
 3. Compare against intent, Design DNA, negative specification, semantic tokens, approved patterns and the permitted use of references. Detect generic AI styling and accidental identity drift; honor deliberate authorized exceptions.
-4. Evaluate hierarchy, density, readability, consistency, responsive behavior and UX. Assess accessibility with available keyboard, focus, contrast, semantic and assistive-technology evidence. Screenshots alone cannot prove interaction or accessibility compliance.
-5. Record concrete findings using the existing BLOCKER/MAJOR/MINOR/NOTE severity model: location/view, observation, governing requirement, impact and a proportional correction. Separate defects from optional preferences.
-6. Return findings to implementation. Do not edit the product during initial review or invent a new visual direction. If subsequently authorized to fix findings, distinguish that authorship from independent review and recheck affected views.
-7. Record the review result and limitations in the existing work/PR evidence. Missing render evidence means BLOCKED or NOT RUN for visual review, never PASS. Apply the universal completion decision once.
+4. Evaluate hierarchy, density, readability, consistency, responsive behavior and UX.
+   Look for demonstrated task failures such as clipped/overflowing content, controls
+   that look interactive but are not, missing loading/empty/error feedback, ambiguous
+   hierarchy, inconsistent patterns or decoration that obscures the task; do not turn
+   personal taste into a defect. Assess accessibility with available semantic names
+   and roles, keyboard order, visible focus, contrast, text scaling, reduced-motion
+   and assistive-technology evidence. Screenshots alone cannot prove interaction or
+   accessibility compliance.
+5. For React/Vite work, exercise the changed rendered route/component using existing
+   project commands and browser tooling. When affected, check direct route entry and
+   refresh, relevant component states, keyboard completion of the task, responsive
+   behavior at supported narrow/wide sizes and browser/runtime errors. Use configured
+   project tests/builds; do not add browser or accessibility dependencies just for
+   this review. If render or interaction evidence is unavailable, mark that portion
+   NOT RUN or BLOCKED.
+6. Record concrete findings using the existing BLOCKER/MAJOR/MINOR/NOTE severity
+   model: location/view, observation, governing requirement, impact and a proportional
+   correction. Separate defects from optional preferences.
+7. Return findings to implementation. Do not edit the product during initial review
+   or invent a new visual direction. If subsequently authorized to fix findings,
+   distinguish that authorship from independent review and recheck affected views.
+8. Record the review result and limitations in the existing work/PR evidence. Missing
+   render evidence means BLOCKED or NOT RUN for visual review, never PASS. Apply the
+   universal completion decision once.
 
 ## Decision points
 

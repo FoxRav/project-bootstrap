@@ -3,6 +3,20 @@
 This records canonical foundation releases, not the copied application's releases.
 Version semantics and adoption policy: [PROJECT_BOOTSTRAP.md §7](PROJECT_BOOTSTRAP.md#7-living-knowledge-git-and-versions).
 
+## 2.4.1 — 2026-11-09
+
+Refined existing security review with candidate dispositions, independent validation,
+evidence-based severity and false-positive handling; separated requirements conformance
+from technical quality in code review; strengthened causal debugging and durable reuse
+of recurring lessons; and added task-specific responsive, accessibility and React/Vite
+acceptance prompts to UI implementation and review. Updated routing, source provenance,
+testing scenarios and archived the work record and CTO review evidence in the local
+`REVIEW/` directory. No new skill, dependency, runtime tool,
+mandatory workflow or change to authority, approvals, quality gates or Git policy.
+
+Patch release: clarifies and strengthens existing task-selected guidance while
+preserving all skill counts, project choices and existing completion requirements.
+
 ## 2.4.0 — 2026-11-08
 
 Added 12 task-selected technical skills and four focused reference guides for system

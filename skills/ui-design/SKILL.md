@@ -31,9 +31,22 @@ Authorized behavior and acceptance criteria, design baseline, existing component
 2. Check applicability and status. If the manifest is template, disabled or draft and the work needs a baseline, route to design-brief. An explicitly authorized exploratory prototype may proceed with its assumptions labeled; it cannot establish approved project identity.
 3. Reuse approved components and patterns. Compare the planned change against Design DNA, negative specification and reference use boundaries. Resolve conflicting authorities through Bootstrap policy, not aesthetic preference.
 4. Implement the bounded behavior using semantic tokens instead of arbitrary visual literals. Use the same semantic roles through a documented mapping for non-CSS output. Add a token only for a real reusable role and keep its meaning and value coherent.
-5. Cover relevant responsive layouts, content density, empty/loading/error states, keyboard/focus behavior, contrast and reduced-motion needs. Record constraints rather than silently dropping requirements.
-6. Run applicable behavioral/static checks and inspect actual rendered output. Update design context only when the task authorizes a lasting design change; do not regenerate it or introduce a new style because a reference looks attractive.
-7. Submit actual rendered evidence and ordinary work-item evidence for visual-review and any required independent review. Repair scoped findings and recheck affected output.
+5. Cover relevant responsive layouts, content density, empty/loading/error states,
+   keyboard/focus behavior, contrast, text scaling and reduced-motion needs. Record
+   constraints rather than silently dropping requirements.
+6. For a React/Vite project, use its existing scripts and run the changed route or
+   component in the real app. Where relevant, verify direct route entry and refresh,
+   the affected loading/empty/error/success states, keyboard operation and visible
+   focus, plus supported narrow and wide layouts. Run configured lint, type, test and
+   build checks; inspect runtime/console errors. Use available browser/accessibility
+   tools, but do not add dependencies or claim complete accessibility from source or
+   screenshot inspection alone.
+7. Run applicable behavioral/static checks and inspect actual rendered output. Update
+   design context only when the task authorizes a lasting design change; do not
+   regenerate it or introduce a new style because a reference looks attractive.
+8. Submit actual rendered evidence and ordinary work-item evidence for visual-review
+   and any required independent review. Repair scoped findings and recheck affected
+   output.
 
 ## Decision points
 

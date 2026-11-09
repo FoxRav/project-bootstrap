@@ -117,6 +117,12 @@ Project Bootstrap sisältää 18 yleiskäyttöistä skilliä ja 13 valinnaista t
 `architecture-review` · `to-tickets` · `implement` · `tdd` · `diagnose-bug` · `code-review` ·
 `security-review` · `release-readiness` · `handoff` · `design-brief` · `ui-design` · `visual-review`
 
+Versio 2.4.1 vahvistaa tietoturvalöydösten näyttöön perustuvaa validointia, erottaa
+vaatimustenmukaisuuden ja teknisen laadun katselmoinnin, terävöittää juurisyyanalyysiä
+sekä lisää tehtäväkohtaiset responsiivisuuden, saavutettavuuden ja React/Vite-projektien
+hyväksymiskriteerit. Muutokset täydentävät olemassa olevia skillejä; uusia skillejä,
+riippuvuuksia tai pakollisia työnkulkuja ei lisätä.
+
 Valinnaisiin teknisiin skilleihin kuuluvat webhooks, system-design, api-design,
 database-engineering, distributed-systems, application-security,
 performance-observability, delivery-engineering, testing-strategy, data-engineering,

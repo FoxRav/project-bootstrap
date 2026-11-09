@@ -1,7 +1,7 @@
 # Project context — canonical bootstrap
 
 Status: current for bootstrap maintenance; replace when starting a product.
-Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-11-08.
+Owner: Product Owner (see [runtime mapping](RUNTIME.md)). Verified: 2026-11-09.
 Adopted foundation: [BOOTSTRAP_VERSION](../BOOTSTRAP_VERSION). Local deviations: none.
 
 ## Product intent
@@ -60,7 +60,7 @@ source inventory when intentionally adding or removing canonical files.
 | Skill design provenance (reference only) | [Skill sources](SKILL_SOURCES.md) |
 | Design applicability, intent, tokens and reference workflow | [Initialization](INITIALIZE.md#visual-or-non-visual-project), [design definition](../design/DESIGN.md), [manifest](../design/manifest.json) |
 | Visual review evidence within normal review | [Visual worksheet](../design/qa/visual-review.md) |
-| Current work | None; add links here when starting a bounded work item |
+| Current work | None. The latest completed Bootstrap update is 2.4.1; see [CHANGELOG.md](../CHANGELOG.md). Local CTO review evidence and the archived work item are retained under the ignored `REVIEW/` directory. |
 
 No accepted ADR is required for routine maintenance. Create `docs/ADR/` and a numbered
 record when a new consequential choice needs one; do not invent acceptance history.
